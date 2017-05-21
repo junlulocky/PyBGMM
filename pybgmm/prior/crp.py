@@ -1,3 +1,10 @@
+"""
+Chinese restaurant process prior
+Author: Jun Lu
+Contact: jun.lu.locky@gmail.com
+Date: 2017
+"""
+
 import numpy as np
 import scipy as sp
 import random

@@ -1,4 +1,4 @@
-# BGMM: Bayesian inference for Gaussian mixture model
+# PyBGMM: Bayesian inference for Gaussian mixture model
 
 More coming...
 
@@ -7,6 +7,21 @@ Approximation inference (Bayesian inference) for finite Gaussian mixture model (
 model (IGMM) includes variational inference and Monte Carlo methods. Here we only use Monte Carlo methods. In 
 particular, we use collapsed Gibbs sampling to do the inference.
 
+## Code Structure
+
+```
+|-- GMM # base class for Gaussian mixture model
+    |---- FGMM  # base class for finite Gaussian mixture model
+        |------ PFGMM
+        |------ CSFGMM
+        |------ LSFGMM
+
+    |---- IGMM  # base class for infinite Gaussian mixture model
+        |------ CRPMM
+        |------ PCRPMM
+        |------ CSIGMM
+        |------ LSIGMM
+```
 
 ## Documentation
 

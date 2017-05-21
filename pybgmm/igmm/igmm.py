@@ -1,3 +1,10 @@
+"""
+Base class for Infinite Gaussian mixture model (IGMM)
+
+Author: Jun Lu
+Contact: jun.lu.locky@gmail.com
+Date: 2017
+"""
 
 from numpy.linalg import cholesky, det, inv, slogdet
 from scipy.misc import logsumexp
@@ -6,8 +13,6 @@ import logging
 import math
 import numpy as np
 import time
-from sklearn.metrics.cluster import normalized_mutual_info_score
-from sklearn.metrics import mutual_info_score
 from scipy import stats
 import copy
 import matplotlib.pyplot as plt
@@ -16,16 +21,13 @@ import matplotlib.pyplot as plt
 from ..gaussian.gaussian_components import GaussianComponents
 from ..gaussian.gaussian_components_diag import GaussianComponentsDiag
 from ..gaussian.gaussian_components_fixedvar import GaussianComponentsFixedVar
-# import ..utils.utils
+
 from ..utils import utils
-from ..infopy.infopy import information_variation
-
-
 from ..utils.plot_utils import plot_ellipse, plot_mixture_model
 
+from ..gmm import GMM
 
 
-import collections
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +37,7 @@ logger = logging.getLogger(__name__)
 #                                  IGMM CLASS                                 #
 #-----------------------------------------------------------------------------#
 
-class IGMM(object):
+class IGMM(GMM):
     """
     An infinite Gaussian mixture model (IGMM).
 
@@ -64,10 +66,12 @@ class IGMM(object):
         one of "full", "diag" or "fixed".
     """
 
+
     def __init__(
-            self, X, prior, alpha, save_path, assignments="rand", K=1, K_max=None,
+            self, X, kernel_prior, alpha, save_path, assignments="rand", K=1, K_max=None,
             covariance_type="full"
             ):
+        super(IGMM, self).__init__()
 
         data_shape = X.shape
         if len(data_shape) < 2:
@@ -98,11 +102,11 @@ class IGMM(object):
             pass
 
         if covariance_type == "full":
-            self.components = GaussianComponents(X, prior, assignments, K_max)
+            self.components = GaussianComponents(X, kernel_prior, assignments, K_max)
         elif covariance_type == "diag":
-            self.components = GaussianComponentsDiag(X, prior, assignments, K_max)
+            self.components = GaussianComponentsDiag(X, kernel_prior, assignments, K_max)
         elif covariance_type == "fixed":
-            self.components = GaussianComponentsFixedVar(X, prior, assignments, K_max)
+            self.components = GaussianComponentsFixedVar(X, kernel_prior, assignments, K_max)
         else:
             assert False, "Invalid covariance type."
 
@@ -141,98 +145,102 @@ class IGMM(object):
         log_prob_X_given_z = copy_components.log_marg()
 
         return log_prob_z + log_prob_X_given_z
-    # @profile
-    def gibbs_sample(self, n_iter, _true_assignment, n_print=20):
-        """
-        Perform `n_iter` iterations Gibbs sampling on the IGMM.
-
-        A record dict is constructed over the iterations, which contains
-        several fields describing the sampling process. Each field is described
-        by its key and statistics are given in a list which covers the Gibbs
-        sampling iterations. This dict is returned.
-        """
-
-        # Setup record dictionary
-        record_dict = {}
-        record_dict["sample_time"] = []
-        start_time = time.time()
-        record_dict["log_marg"] = []
-        record_dict["components"] = []
-        record_dict["nmi"] = []
-        record_dict["mi"] = []
-        record_dict["nk"] = []
-
-        # Loop over iterations
-        for i_iter in range(n_iter):
-
-            # Loop over data items
-            # import random
-            # permuted = range(self.components.N)
-            # random.shuffle(permuted)
-            # for i in permuted:
-            for i in xrange(self.components.N):
-
-                # Cache some old values for possible future use
-                k_old = self.components.assignments[i]
-                K_old = self.components.K
-                stats_old = self.components.cache_component_stats(k_old)
-
-                # Remove data vector `X[i]` from its current component
-                self.components.del_item(i)
-
-                # Compute log probability of `X[i]` belonging to each component
-                log_prob_z = np.zeros(self.components.K + 1, np.float)
-                # (25.35) in Murphy, p. 886
-                log_prob_z[:self.components.K] = np.log(self.components.counts[:self.components.K])
-                # (25.33) in Murphy, p. 886
-                log_prob_z[:self.components.K] += self.components.log_post_pred(i)
-                # Add one component to which nothing has been assigned
-                log_prob_z[-1] = math.log(self.alpha) + self.components.cached_log_prior[i]
-                prob_z = np.exp(log_prob_z - logsumexp(log_prob_z))
-
-                # Sample the new component assignment for `X[i]`
-                k = utils.draw(prob_z)
-                # logger.debug("Sampled k = " + str(k) + " from " + str(prob_z) + ".")
-
-                # Add data item X[i] into its component `k`
-                if k == k_old and self.components.K == K_old:
-                    # Assignment same and no components have been removed
-                    self.components.restore_component_from_stats(k_old, *stats_old)
-                    self.components.assignments[i] = k_old
-                else:
-                    # Add data item X[i] into its new component `k`
-                    self.components.add_item(i, k)
-
-            # Update record
-            record_dict["sample_time"].append(time.time() - start_time)
-            start_time = time.time()
-            record_dict["log_marg"].append(self.log_marg())
-            record_dict["components"].append(self.components.K)
-            nmi = normalized_mutual_info_score(_true_assignment, self.components.assignments)
-            record_dict["nmi"].append(nmi)
-            mi = mutual_info_score(_true_assignment, self.components.assignments)
-            record_dict["mi"].append(mi)
-            record_dict["nk"].append(self.components.counts[:self.components.K])
-
-            # Log info
-            info = "iteration: " + str(i_iter)
-            for key in sorted(record_dict):
-                info += ", " + key + ": " + str(record_dict[key][-1])
-            # info += ", nmi: " + str(nmi)
-            info += "."
-            logger.info(info)
-
-        return record_dict
+    # # @profile
+    # def gibbs_sample(self, n_iter, _true_assignment, n_print=20):
+    #     """
+    #     Perform `n_iter` iterations Gibbs sampling on the IGMM.
+    #
+    #     A record dict is constructed over the iterations, which contains
+    #     several fields describing the sampling process. Each field is described
+    #     by its key and statistics are given in a list which covers the Gibbs
+    #     sampling iterations. This dict is returned.
+    #     """
+    #
+    #     # Setup record dictionary
+    #     record_dict = {}
+    #     record_dict["sample_time"] = []
+    #     start_time = time.time()
+    #     record_dict["log_marg"] = []
+    #     record_dict["components"] = []
+    #     record_dict["nmi"] = []
+    #     record_dict["mi"] = []
+    #     record_dict["nk"] = []
+    #
+    #     # Loop over iterations
+    #     for i_iter in range(n_iter):
+    #
+    #         # Loop over data items
+    #         # import random
+    #         # permuted = range(self.components.N)
+    #         # random.shuffle(permuted)
+    #         # for i in permuted:
+    #         for i in xrange(self.components.N):
+    #
+    #             # Cache some old values for possible future use
+    #             k_old = self.components.assignments[i]
+    #             K_old = self.components.K
+    #             stats_old = self.components.cache_component_stats(k_old)
+    #
+    #             # Remove data vector `X[i]` from its current component
+    #             self.components.del_item(i)
+    #
+    #             # Compute log probability of `X[i]` belonging to each component
+    #             log_prob_z = np.zeros(self.components.K + 1, np.float)
+    #             # (25.35) in Murphy, p. 886
+    #             log_prob_z[:self.components.K] = np.log(self.components.counts[:self.components.K])
+    #             # (25.33) in Murphy, p. 886
+    #             log_prob_z[:self.components.K] += self.components.log_post_pred(i)
+    #             # Add one component to which nothing has been assigned
+    #             log_prob_z[-1] = math.log(self.alpha) + self.components.cached_log_prior[i]
+    #             prob_z = np.exp(log_prob_z - logsumexp(log_prob_z))
+    #
+    #             # Sample the new component assignment for `X[i]`
+    #             k = utils.draw(prob_z)
+    #             # logger.debug("Sampled k = " + str(k) + " from " + str(prob_z) + ".")
+    #
+    #             # Add data item X[i] into its component `k`
+    #             if k == k_old and self.components.K == K_old:
+    #                 # Assignment same and no components have been removed
+    #                 self.components.restore_component_from_stats(k_old, *stats_old)
+    #                 self.components.assignments[i] = k_old
+    #             else:
+    #                 # Add data item X[i] into its new component `k`
+    #                 self.components.add_item(i, k)
+    #
+    #         # Update record
+    #         record_dict["sample_time"].append(time.time() - start_time)
+    #         start_time = time.time()
+    #         record_dict["log_marg"].append(self.log_marg())
+    #         record_dict["components"].append(self.components.K)
+    #         nmi = normalized_mutual_info_score(_true_assignment, self.components.assignments)
+    #         record_dict["nmi"].append(nmi)
+    #         mi = mutual_info_score(_true_assignment, self.components.assignments)
+    #         record_dict["mi"].append(mi)
+    #         record_dict["nk"].append(self.components.counts[:self.components.K])
+    #
+    #         # Log info
+    #         info = "iteration: " + str(i_iter)
+    #         for key in sorted(record_dict):
+    #             info += ", " + key + ": " + str(record_dict[key][-1])
+    #         # info += ", nmi: " + str(nmi)
+    #         info += "."
+    #         logger.info(info)
+    #
+    #     return record_dict
 
 
     def gibbs_weight(self):
+        """
+        Get weight vector for each gibbs iteration
+        :return: weight vector
+        """
         Nk = self.components.counts[:self.components.K].tolist()
         alpha = [Nk[cid] + self.alpha / self.components.K
                  for cid in range(self.components.K)]
         return stats.dirichlet(alpha).rvs(size=1).flatten()
 
-    def label_switch(self, idx, nplist):
-        return np.array(nplist)[idx]
+    # def label_switch(self, idx, nplist):
+    #     return np.array(nplist)[idx]
 
     def approx_sampling(self, n_iter, _true_assignment, approx_thres_perct=0.04, approx_burnin=200, num_saved=3):
 
@@ -774,72 +782,7 @@ class IGMM(object):
 
         return record_dict, distribution_dict
 
-    def setup_record_dict(self):
-        record_dict = {}
 
-        record_dict["sample_time"] = []
-        record_dict["log_marg"] = []
-        record_dict["components"] = []
-        record_dict["nmi"] = []
-        record_dict["mi"] = []
-        record_dict["nk"] = []
-        record_dict["loss"] = []
-        record_dict['bic'] = []
-        record_dict["vi"] = []
-
-        return record_dict
-
-    def update_record_dict(self, record_dict, i_iter, true_assignments, start_time):
-        """
-        Update record dictionary
-        :param record_dict: record dictionary
-        :param i_iter: sample iteration
-        :param true_assignments: true assignment for clustering
-        :param start_time: last sampling time
-        :return: record dictionary
-        """
-
-        ## save
-        record_dict["sample_time"].append(time.time() - start_time)
-
-        ## save the log-marginal metric
-        record_dict["log_marg"].append(self.log_marg())
-
-        ## save how many components
-        record_dict["components"].append(self.components.K)
-
-        ## save normalized mutual information score
-        nmi = normalized_mutual_info_score(true_assignments, self.components.assignments)
-        record_dict["nmi"].append(nmi)
-
-        ## save mutual information score
-        mi = mutual_info_score(true_assignments, self.components.assignments)
-        record_dict["mi"].append(mi)
-
-        ## save number of samples in each cluster
-        record_dict["nk"].append(self.components.counts[:self.components.K])
-
-        ## save squared sum of square loss
-        loss = utils.cluster_loss_inertia(self.components.X, self.components.assignments)
-        record_dict["loss"].append(loss)
-
-        ## save bayesian information criterion (BIC)
-        bic = utils.cluster_loss_inertia(self.components.X, self.components.assignments)
-        record_dict["bic"].append(bic)
-
-        ## save variation of information
-        vi = information_variation(true_assignments, self.components.assignments)
-        record_dict["vi"].append(vi)
-
-        ## logging every 20 steps
-        if i_iter % 20 == 0:
-            info = "iteration: " + str(i_iter)
-            for key in sorted(record_dict):
-                info += ", " + key + ": " + str(record_dict[key][-1])
-            info += "."
-            logger.info(info)
-
-        return record_dict
 
     def setup_distribution_dict(self, num_saved):
         distribution_dict = {}
@@ -914,56 +857,3 @@ class IGMM(object):
         return distribution_dict
 
 
-#-----------------------------------------------------------------------------#
-#                                MAIN FUNCTION                                #
-#-----------------------------------------------------------------------------#
-
-def main():
-
-    import random
-
-    from niw import NIW
-
-    logging.basicConfig(level=logging.INFO)
-
-    random.seed(1)
-    np.random.seed(1)
-
-    # Data parameters
-    D = 2           # dimensions
-    N = 20         # number of points to generate
-    K_true = 4      # the true number of components
-
-    # Model parameters
-    alpha = 1.
-    K = 3           # initial number of components
-    n_iter = 20
-
-    # Generate data
-    mu_scale = 4.0
-    covar_scale = 0.7
-    z_true = np.random.randint(0, K_true, N)
-    mu = np.random.randn(D, K_true)*mu_scale
-    X = mu[:, z_true] + np.random.randn(D, N)*covar_scale
-    X = X.T
-
-    # Intialize prior
-    m_0 = np.zeros(D)
-    k_0 = covar_scale**2/mu_scale**2
-    v_0 = D + 3
-    S_0 = covar_scale**2*v_0*np.eye(D)
-    prior = NIW(m_0, k_0, v_0, S_0)
-
-    # Setup IGMM
-    igmm = IGMM(X, prior, alpha, assignments="rand", K=K)
-    # igmm = IGMM(X, prior, alpha, assignments="each-in-own")
-    # igmm = IGMM(X, prior, alpha, assignments="one-by-one", K=K)
-
-    # Perform Gibbs sampling
-    logger.info("Initial log marginal prob: " + str(igmm.log_marg()))
-    record = igmm.gibbs_sample(n_iter)
-    logger.info("Assignments: " + str(igmm.components.assignments))
-
-
-if __name__ == "__main__":
-    main()

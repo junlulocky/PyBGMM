@@ -16,9 +16,9 @@ from ..utils import utils
 
 class CRPMM(IGMM):
 
-    def __init__(self, X, prior, alpha, save_path, assignments="rand", K=1, K_max=None,
+    def __init__(self, X, kernel_prior, alpha, save_path, assignments="rand", K=1, K_max=None,
             covariance_type="full"):
-        super(CRPMM, self).__init__(X, prior, alpha, save_path, assignments=assignments, K=K, K_max=K_max,
+        super(CRPMM, self).__init__(X, kernel_prior, alpha, save_path, assignments=assignments, K=K, K_max=K_max,
             covariance_type=covariance_type)
 
 
@@ -43,12 +43,7 @@ class CRPMM(IGMM):
         # Setup record dictionary
         record_dict = self.setup_record_dict()
         start_time = time.time()
-        distribution_dict = {}
-
-
-        distribution_dict["mean"] = np.zeros(shape=(num_saved, 0))
-        distribution_dict["variance"] = np.zeros(shape=(num_saved, 0))
-        distribution_dict["weights"] = np.zeros(shape=(num_saved, 0))
+        distribution_dict = self.setup_distribution_dict(num_saved)
 
         # Loop over iterations
         for i_iter in range(n_iter):

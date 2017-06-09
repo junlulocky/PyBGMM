@@ -18,9 +18,10 @@ particular, we use collapsed Gibbs sampling to do the inference.
 
     |---- IGMM  # base class for infinite Gaussian mixture model
         |------ CRPMM
-        |------ PCRPMM
+        |------ PCRPMM    ## powered Chinese restaurant process (pCRP) mixture model
         |------ CSIGMM
         |------ LSIGMM
+        |------ SubCRPMM  ## Sub-clustering with CRP mixture model for high-dimensional data
 ```
 
 ## Documentation

@@ -5,6 +5,20 @@ sys.path.append("..")
 
 import infopy.infopy as ipy
 
+print "## test BIC"
+W = np.array([0.5, 0.5])
+MU = np.array([1, 1])
+SIGMA = np.array([10, 1])
+N = 300 ## number of data samples
+assignments = np.random.choice(MU.size, size=N, p=W)
+X = np.random.normal(MU[assignments], SIGMA[assignments], size=N)
+X = X[:, np.newaxis]
+
+
+print "true BIC: {}".format(ipy.compute_bic(X, assignments))
+assignments = np.random.permutation(assignments)
+print "random BIC: {}".format(ipy.compute_bic(X, assignments))
+
 print "## test entropy"
 labels_true = np.array([1,2,3,4])
 labels_pred = np.array([0,1,2,2])

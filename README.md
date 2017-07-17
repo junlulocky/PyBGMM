@@ -32,7 +32,7 @@ What do we include:
 
 - Hyperprior on Dirichlet distribution (for finite Gaussian mixture model)
 
-- Chinese restaurant process (CRP) mixture model
+- Chinese restaurant process mixture model (CRPMM)
 
 - Powered Chinese restaurant process (pCRP) mixture model
 
@@ -40,9 +40,25 @@ What do we include:
 
 - Constrained sampling for Chinese restaurant process mixture model
 
+- Bayesian variable selection in Chinese restaurant process mixture (Sub-CRP)
+
 What we will include:
 
 - Hyperprior on Dirichlet process prior (for infinite Gaussian mixture model)
+
+## Examples
+
+
+| Code | Description |
+|:-------:| ----------- |
+| [CRPMM 1d](/examples/crpmm_1d_demo.py) | Chinese restaurant process mixture model for 1d data |
+| [CRPMM 2d](/examples/crpmm_1d_demo.py) | Chinese restaurant process mixture model for 2d data |
+| [pCRPMM 1d](/examples/pcrpmm_1d_demo.py | powered Chinese restaurant process mixture model for 1d data |
+| [pCRPMM 2d](/examples/pcrpmm_2d_demo.py | powered Chinese restaurant process mixture model for 2d data |
+| [SubCRP](/examples/subcrp_demo.py) | several test on SubCRP mixture model (Bayesian variable selection for
+high-dimensional data in CRP) |
+| [CSIGMM](/examples/csigmm_1d_demo.py | demo for constrained sampling for CRPMM |
+| [CRP draw](/examples/crp_draw.py) | A basic demo for CRP prior draw |
 
 ## Dependencies
 1. [Adaptive Rejection Sampling (ARS)](https://github.com/junlulocky/ARS-MCMC) - Python implementation of ARS.
@@ -65,3 +81,5 @@ fixed-dimensional acoustic embeddings", in Proceedings of the IEEE Spoken Langua
  (2011): 2825-2830.
  
 [5]. Rasmussen, Carl Edward. "The infinite Gaussian mixture model." Advances in neural information processing systems. 2000.
+
+[6]. Tadesse, Mahlet G., Naijun Sha, and Marina Vannucci. "Bayesian variable selection in clustering high-dimensional data." Journal of the American Statistical Association 100.470 (2005): 602-617.

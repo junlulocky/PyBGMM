@@ -81,13 +81,14 @@ class FGMM(GMM):
             self.alpha = dir_prior.alpha
             self.kalpha = dir_prior.alpha * K
 
-            self.hyperprior = None
+            self.hyperprior = None  ## use fixed symmetric Dirichlet prior
         elif dir_prior.name == 'hyper-dirichlet':
             self.alpha = 1. / K # default alpha for hyper dirichlet
             self.kalpha = 1.
             self.hyperprior = dir_prior
-            self.a = dir_prior.a
+            self.a = dir_prior.a  ## hyper prior Gamma(a,b)
             self.b = dir_prior.b
+            self.xi = dir_prior.xi  ## starting points for adaptive rejection sampling (ARS)
         else:
             assert False, "Invalid Dirichlet prior."
 
@@ -192,6 +193,7 @@ class FGMM(GMM):
         distribution_dict["mean"][:, i_iter] = means
         distribution_dict["variance"][:, i_iter] = sds
 
+        ## NOTE: return the weights for the update of Hyperprior on Dirichlet by ARS
         return distribution_dict, weights
 
     def gibbs_weight(self):
@@ -218,6 +220,10 @@ class FGMM(GMM):
         several fields describing the sampling process. Each field is described
         by its key and statistics are given in a list which covers the Gibbs
         sampling iterations. This dict is returned.
+        :param n_iter: number of iteration for Gibbs sampling
+        :param true_assignments: true assignments of clustering
+        :param weight_first: Label switch by weight or by mean (1D)
+        :return: record_dict and distribution_dict for all records during sampling
         """
 
         # Setup record dictionary
@@ -281,7 +287,7 @@ class FGMM(GMM):
             if self.hyperprior is not None:
                 weight_prod = np.prod(weights)
                 K = self.components.K
-                ars = ARS(f_hyperprior_log, f_hyperprior_log_prima, xi=[0.1, 1, 10], lb=0,
+                ars = ARS(f_hyperprior_log, f_hyperprior_log_prima, xi=self.xi, lb=0,
                           weight_prod=weight_prod, K=K, a=self.a, b=self.b)
                 if not ars.no:
                     self.alpha = ars.draw(3)[2]

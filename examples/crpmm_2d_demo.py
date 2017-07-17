@@ -14,12 +14,13 @@ import numpy as np
 import random
 import sys
 import collections
+import os
 
 sys.path.append("..")
 
-from bgmm.prior import NIW
-from bgmm.igmm import CRPMM
-from bgmm.utils.plot_utils import plot_ellipse, plot_mixture_model
+from pybgmm.prior import NIW
+from pybgmm.igmm import CRPMM
+from pybgmm.utils.plot_utils import plot_ellipse, plot_mixture_model
 
 logging.basicConfig(level=logging.INFO)
 
@@ -37,7 +38,7 @@ def main():
     # Model parameters
     alpha = 1.
     K = 3           # initial number of components
-    n_iter = 20
+    n_iter = 40
 
     # Generate data
     mu_scale = 4.0
@@ -55,9 +56,17 @@ def main():
     S_0 = covar_scale**2*v_0*np.eye(D)
     prior = NIW(m_0, k_0, v_0, S_0)
 
+
+    ## setup save path
+    save_path = os.path.dirname(__file__) + '/tmp_res/'
+    try:
+        os.stat(save_path)
+    except:
+        os.mkdir(save_path)
+
     # Setup CRPMM
-    crpmm = CRPMM(X, prior, alpha, save_path=None, assignments="rand", K=K)
-    # crpmmmm = CRPMM(X, prior, alpha, save_path=None, assignments="one-by-one", K=K)
+    crpmm = CRPMM(X, prior, alpha, save_path=save_path, assignments="rand", K=K)
+    # crpmmmm = CRPMM(X, prior, alpha, save_path=save_path, assignments="one-by-one", K=K)
 
     # Perform collapsed Gibbs sampling
     record_dict = crpmm.collapsed_gibbs_sampler(n_iter, z_true)

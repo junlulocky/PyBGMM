@@ -1,0 +1,66 @@
+INFO:pybgmm.gmm.gmm:iteration: 0, alpha: 1.0, bic: 92, components: 13, log_marg: -2160.10244502, loss: 92, mi: 0.391276665435, nk: [ 5 10 11  8 10 16  8  7  7 12  1  2  3], nmi: 0.215374535271, sample_time: 0.0551879405975, vi: 4.32159806276.
+INFO:pybgmm.gmm.gmm:iteration: 20, alpha: 1.0, bic: 82, components: 10, log_marg: -1974.31315093, loss: 82, mi: 0.497094433629, nk: [ 7  9 13 11 12  4  7 10 10 17], nmi: 0.283491638002, sample_time: 0.0478870868683, vi: 3.7786987072.
+INFO:pybgmm.gmm.gmm:iteration: 40, alpha: 1.0, bic: 79, components: 12, log_marg: -1975.41484369, loss: 79, mi: 0.510985944075, nk: [ 6  7 11  6 20  3  3  6 19 12  6  1], nmi: 0.290734335608, sample_time: 0.0434367656708, vi: 3.75375524401.
+INFO:pybgmm.gmm.gmm:iteration: 60, alpha: 1.0, bic: 77, components: 10, log_marg: -1957.26609339, loss: 77, mi: 0.501971724859, nk: [ 8  9  6  6 23  9  5  2 18 14], nmi: 0.294180595907, sample_time: 0.0478050708771, vi: 3.59307935783.
+INFO:pybgmm.gmm.gmm:iteration: 80, alpha: 1.0, bic: 75, components: 10, log_marg: -1956.63993315, loss: 75, mi: 0.536545856046, nk: [ 8  7  3  9 25  5  6 11 24  2], nmi: 0.320872911372, sample_time: 0.0468199253082, vi: 3.3717896968.
+INFO:pybgmm.gmm.gmm:iteration: 100, alpha: 1.0, bic: 73, components: 9, log_marg: -1952.63242622, loss: 73, mi: 0.463890657452, nk: [ 9  7  7  6 29  6  3  8 25], nmi: 0.284442933001, sample_time: 0.0474681854248, vi: 3.43802608601.
+INFO:pybgmm.gmm.gmm:iteration: 120, alpha: 1.0, bic: 73, components: 9, log_marg: -1954.30561405, loss: 73, mi: 0.437061291695, nk: [11  9  5 22 27  7 10  8  1], nmi: 0.266551866824, sample_time: 0.0441498756409, vi: 3.54575575357.
+INFO:pybgmm.gmm.gmm:iteration: 140, alpha: 1.0, bic: 79, components: 10, log_marg: -1973.28904047, loss: 79, mi: 0.563203853612, nk: [10 11  9 17 23  4  6  8  7  5], nmi: 0.326885177527, sample_time: 0.0444800853729, vi: 3.47629415526.
+INFO:pybgmm.gmm.gmm:iteration: 160, alpha: 1.0, bic: 76, components: 9, log_marg: -1947.73926025, loss: 76, mi: 0.497628945737, nk: [ 9  8 10 20 27  5  7  8  6], nmi: 0.298155084368, sample_time: 0.0426969528198, vi: 3.47312351045.
+INFO:pybgmm.gmm.gmm:iteration: 180, alpha: 1.0, bic: 80, components: 10, log_marg: -1962.77762122, loss: 80, mi: 0.491890642149, nk: [10 10  7 18 18  6 13 10  6  2], nmi: 0.284788818638, sample_time: 0.0441520214081, vi: 3.69756212125.
+INFO:pybgmm.gmm.gmm:iteration: 200, alpha: 1.0, bic: 82, components: 10, log_marg: -1971.26077637, loss: 82, mi: 0.556577825912, nk: [11 10  7 12 15  6  7 11  7 14], nmi: 0.316331211894, sample_time: 0.0432138442993, vi: 3.629264472.
+INFO:pybgmm.gmm.gmm:iteration: 220, alpha: 1.0, bic: 82, components: 10, log_marg: -1967.48732635, loss: 82, mi: 0.706333420827, nk: [ 9  9  9 17 11  6  9 13  4 13], nmi: 0.403095832063, sample_time: 0.0458738803864, vi: 3.17053875318.
+INFO:pybgmm.gmm.gmm:iteration: 240, alpha: 1.0, bic: 77, components: 9, log_marg: -1948.19643644, loss: 77, mi: 0.535282465994, nk: [ 6 11  6 31 14  6  8  8 10], nmi: 0.321453993732, sample_time: 0.0516979694366, vi: 3.3510246371.
+INFO:pybgmm.gmm.gmm:iteration: 260, alpha: 1.0, bic: 74, components: 9, log_marg: -1945.41883652, loss: 74, mi: 0.583220376151, nk: [ 9  6  7 29 17  5  7  8 12], nmi: 0.350034785524, sample_time: 0.046875, vi: 3.21616338387.
+INFO:pybgmm.gmm.gmm:iteration: 280, alpha: 1.0, bic: 71, components: 8, log_marg: -1950.90465227, loss: 71, mi: 0.561582215457, nk: [ 9  6  9 32 22  7  8  7], nmi: 0.350274706371, sample_time: 0.0442349910736, vi: 3.06220478833.
+INFO:pybgmm.gmm.gmm:iteration: 300, alpha: 1.0, bic: 69, components: 9, log_marg: -1939.65872667, loss: 69, mi: 0.692127156438, nk: [ 9  7  9 40 16  5  7  5  2], nmi: 0.435319744897, sample_time: 0.0658910274506, vi: 2.64074036909.
+INFO:pybgmm.gmm.gmm:iteration: 320, alpha: 1.0, bic: 70, components: 10, log_marg: -1931.54516753, loss: 70, mi: 0.673063875, nk: [ 7  3  9 39 17  6  5  7  3  4], nmi: 0.41530278894, sample_time: 0.0467689037323, vi: 2.79953521666.
+INFO:pybgmm.gmm.gmm:iteration: 340, alpha: 1.0, bic: 67, components: 9, log_marg: -1932.78731303, loss: 67, mi: 0.695958310867, nk: [ 9  5  9 39 17  8  8  3  2], nmi: 0.438209757738, sample_time: 0.0653338432312, vi: 2.6238589025.
+INFO:pybgmm.gmm.gmm:iteration: 360, alpha: 1.0, bic: 68, components: 8, log_marg: -1940.70806367, loss: 68, mi: 0.684811224401, nk: [ 9  7  8 43 14  6  7  6], nmi: 0.439935411402, sample_time: 0.0422551631927, vi: 2.55158795071.
+INFO:pybgmm.gmm.gmm:iteration: 380, alpha: 1.0, bic: 57, components: 6, log_marg: -1908.38782001, loss: 57, mi: 0.692474548571, nk: [ 2 11  5 52 13 17], nmi: 0.503850451099, sample_time: 0.0566380023956, vi: 1.96752986147.
+INFO:pybgmm.gmm.gmm:iteration: 400, alpha: 1.0, bic: 58, components: 6, log_marg: -1918.80047312, loss: 58, mi: 0.633828906551, nk: [17 11  7 52 12  1], nmi: 0.462292410938, sample_time: 0.0372018814087, vi: 2.12718863877.
+INFO:pybgmm.gmm.gmm:iteration: 420, alpha: 1.0, bic: 59, components: 6, log_marg: -1911.26064101, loss: 59, mi: 0.698014886208, nk: [ 9 11  7 54 12  7], nmi: 0.500371842217, sample_time: 0.0428969860077, vi: 2.01163704028.
+INFO:pybgmm.gmm.gmm:iteration: 440, alpha: 1.0, bic: 58, components: 6, log_marg: -1904.84938101, loss: 58, mi: 0.72057744704, nk: [12  9  6 56 12  5], nmi: 0.525916498103, sample_time: 0.0448160171509, vi: 1.87423325812.
+INFO:pybgmm.gmm.gmm:iteration: 460, alpha: 1.0, bic: 59, components: 6, log_marg: -1906.19899186, loss: 59, mi: 0.677503935654, nk: [13 11  6 54 11  5], nmi: 0.488573375731, sample_time: 0.0450139045715, vi: 2.04654877669.
+INFO:pybgmm.gmm.gmm:iteration: 480, alpha: 1.0, bic: 59, components: 6, log_marg: -1911.82789974, loss: 59, mi: 0.660878148917, nk: [ 7 12  9 54 13  5], nmi: 0.476093546281, sample_time: 0.0465447902679, vi: 2.09868976822.
+INFO:pybgmm.gmm.gmm:iteration: 500, alpha: 1.0, bic: 61, components: 6, log_marg: -1909.81535496, loss: 61, mi: 0.650553669741, nk: [ 7 13 11 53 11  5], nmi: 0.465649909415, sample_time: 0.0454208850861, vi: 2.1547351224.
+INFO:root:update mask!!
+INFO:root:log_marg_old: -1710.67646835
+INFO:root:log_marg_new: -1706.64043923
+INFO:root:p_bern_new: 0.318509695139
+INFO:root:accetance rate: 0.45
+INFO:pybgmm.gmm.gmm:iteration: 520, alpha: 1.0, bic: 25, components: 2, log_marg: -643.607859986, loss: 25, mi: 0.685929800252, nk: [44 56], nmi: 0.70722360173, sample_time: 0.0766561031342, vi: 0.988933727405.
+INFO:root:log_marg_old: -1706.48215988
+INFO:root:log_marg_new: -1714.80288394
+INFO:root:p_bern_new: 0.318509695139
+INFO:root:accetance rate: 0.45
+INFO:pybgmm.gmm.gmm:iteration: 540, alpha: 1.0, bic: 25, components: 2, log_marg: -643.607859986, loss: 25, mi: 0.685929800252, nk: [44 56], nmi: 0.70722360173, sample_time: 0.376899003983, vi: 0.988933727405.
+INFO:root:log_marg_old: -1706.48215988
+INFO:root:log_marg_new: -1713.22683622
+INFO:root:p_bern_new: 0.318509695139
+INFO:root:accetance rate: 0.45
+INFO:pybgmm.gmm.gmm:iteration: 560, alpha: 1.0, bic: 25, components: 2, log_marg: -643.607859986, loss: 25, mi: 0.685929800252, nk: [44 56], nmi: 0.70722360173, sample_time: 0.0825841426849, vi: 0.988933727405.
+INFO:root:log_marg_old: -1706.48215988
+INFO:root:log_marg_new: -1710.76281259
+INFO:root:p_bern_new: 0.318509695139
+INFO:root:accetance rate: 0.45
+INFO:pybgmm.gmm.gmm:iteration: 580, alpha: 1.0, bic: 25, components: 2, log_marg: -643.607859986, loss: 25, mi: 0.685929800252, nk: [44 56], nmi: 0.70722360173, sample_time: 0.078516960144, vi: 0.988933727405.
+INFO:root:acceptance rate: 0.45
+INFO:root:mean loss after burn-in: 29.3
+INFO:root:loss sem: 2.17497126418
+INFO:root:mean bic after burn-in: 29.3
+INFO:root:bic sem: 2.17497126418
+INFO:root:mean mi after burn-in: 0.68744242546
+INFO:root:mi sem: 0.0024854555973
+INFO:root:mean nmi after burn-in: 0.672652480492
+INFO:root:nmi sem: 0.0160788866051
+INFO:root:mean vi after burn-in: 1.14559096459
+INFO:root:vi sem: 0.0756912763102
+INFO:root:components summary before burnin: Counter({10: 141, 9: 111, 6: 84, 2: 76, 11: 60, 12: 35, 7: 32, 8: 25, 5: 21, 3: 10, 13: 4, 4: 1})
+INFO:root:mean components after burn-in: 2.75
+INFO:root:components summary after burnin: Counter({2: 15, 3: 2, 6: 2, 7: 1})
+INFO:root:components sem: 0.345506874027
+INFO:root:mean included_variable after burn-in: 5.8
+INFO:root:included_variable sem: 0.403732584764
+INFO:root:weights: [ nan  nan  nan]
+INFO:root:extra weights: nan

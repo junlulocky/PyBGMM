@@ -78,14 +78,15 @@ class ARS():
         n=0
         while n < N:
             [xt,i] = self.sampleUpper()
-            # TODO (John): Should perform squeezing test here but not yet implemented 
+            ## TODO: Should perform squeezing test here but not yet implemented
+            ## Refer to my latest version for squeezing test
             ht = self.f(xt, **self.fargs)
             hprimet = self.fprima(xt, **self.fargs)
             ht = ht - self.offset
             #ut = np.amin(self.hprime*(xt-x) + self.h);
             ut = self.h[i] + (xt-self.x[i])*self.hprime[i]
 
-            # Accept sample? - Currently don't use lower
+            # Accept sample
             u = random.random()
             if u < np.exp(ht-ut) or self.nosample:
                 samples[n] = xt
@@ -147,19 +148,4 @@ class ARS():
 
         return [xt,i]
 
-    def plotHull(self):
-        '''
-        Plot the piecewise linear hull using matplotlib
-        '''
-        xpoints = self.z
-        #ypoints = np.hstack([0,np.diff(self.z)*self.hprime])
-        ypoints = np.exp(self.u) 
-        plt.plot(xpoints,ypoints)
-        plt.show()
-        '''
-        for i in range(1,self.z.__len__()):
-            x1 = self.z[i]
-            y1 = 0
-            x2 = self.z[i+1]
-            y2 = self.z[i+1]-self.z[i] * hprime[i]
-        '''
+

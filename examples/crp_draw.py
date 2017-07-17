@@ -8,7 +8,7 @@ Date: 2017
 
 import sys
 sys.path.append("..")
-from bgmm.prior.crp import CRP
+from pybgmm.prior.crp import CRP
 from matplotlib import pyplot as plt
 import numpy as np
 

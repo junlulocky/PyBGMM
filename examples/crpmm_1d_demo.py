@@ -17,9 +17,9 @@ import collections
 
 sys.path.append("..")
 
-from bgmm.prior import NIW
-from bgmm.igmm import CRPMM
-from bgmm.utils.plot_utils import plot_ellipse, plot_mixture_model
+from pybgmm.prior import NIW
+from pybgmm.igmm import CRPMM
+from pybgmm.utils.plot_utils import plot_ellipse, plot_mixture_model
 
 logging.basicConfig(level=logging.INFO)
 
@@ -37,7 +37,7 @@ def main():
     # Model parameters
     alpha = 1.
     K = 3           # initial number of components
-    n_iter = 40
+    n_iter = 40     ## number of iteration, change it to larger value
 
     # Generate data
     mu_scale = 4.0

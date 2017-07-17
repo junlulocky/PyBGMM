@@ -47,6 +47,9 @@ class CRPMM(IGMM):
 
         # Loop over iterations
         for i_iter in range(n_iter):
+            ## save the wanted distribution
+            if num_saved == self.components.K and i_iter > 1:
+                distribution_dict = self.update_distribution_dict(distribution_dict, weight_first)
 
             ## Loop over data items
             # import random
@@ -90,4 +93,4 @@ class CRPMM(IGMM):
             record_dict = self.update_record_dict(record_dict, i_iter, true_assignments, start_time)
             start_time = time.time()
 
-        return record_dict
+        return record_dict, distribution_dict

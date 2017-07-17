@@ -2,13 +2,15 @@
 import random
 import numpy as np
 from scipy.spatial import distance
-
+from scipy.cluster.vq import vq
 
 def draw(p_k):
     """
     Draw from a discrete random variable with mass in vector `p_k`.
 
     Indices returned are between 0 and len(p_k) - 1.
+    :param p_k: probability vector
+    :return random choice from probability vector
     """
     k_uni = random.random()
     for i in xrange(len(p_k)):
@@ -41,14 +43,14 @@ def cluster_loss_inertia(x, assignments):
         local_assignment = unique_assignments[i]  # get the k-th assignments
         x_k = x[np.where(assignments==local_assignment)[0],:]  # samples in cluster k
         # unique_centers[i], unique_dist[i] = compute_mean_dist(x_k)
-        unique_dist[i] = compute_mean_dist(x_k)
+        unique_dist[i] = compute_dist(x_k)
 
     loss = np.sum(unique_dist)
     return loss
 
 
 
-def compute_mean_dist(x):
+def compute_dist(x):
     """
     computer squared root loss for 'x', all 'x' belong to one cluster
     :param x: data
@@ -77,6 +79,10 @@ def compute_mean_dist(x):
 
         # dist = np.sqrt(np.sum(np.square(x - mean)))
         dist = np.sqrt(np.sum(np.square(x - mean)))
+    else:
+        mean = np.mean(x, axis=0)
+        dist = np.sqrt(np.sum(np.square(x - mean)))
+
 
     # return mean, dist
     return dist

@@ -53,11 +53,11 @@ What we will include:
 |:-------:| ----------- |
 | [CRPMM 1d](/examples/crpmm_1d_demo.py) | Chinese restaurant process mixture model for 1d data |
 | [CRPMM 2d](/examples/crpmm_1d_demo.py) | Chinese restaurant process mixture model for 2d data |
-| [pCRPMM 1d](/examples/pcrpmm_1d_demo.py | powered Chinese restaurant process mixture model for 1d data |
-| [pCRPMM 2d](/examples/pcrpmm_2d_demo.py | powered Chinese restaurant process mixture model for 2d data |
+| [pCRPMM 1d](/examples/pcrpmm_1d_demo.py) | powered Chinese restaurant process mixture model for 1d data |
+| [pCRPMM 2d](/examples/pcrpmm_2d_demo.py) | powered Chinese restaurant process mixture model for 2d data |
 | [SubCRP](/examples/subcrp_demo.py) | several test on SubCRP mixture model (Bayesian variable selection for
 high-dimensional data in CRP) |
-| [CSIGMM](/examples/csigmm_1d_demo.py | demo for constrained sampling for CRPMM |
+| [CSIGMM](/examples/csigmm_1d_demo.py) | demo for constrained sampling for CRPMM |
 | [CRP draw](/examples/crp_draw.py) | A basic demo for CRP prior draw |
 
 ## Dependencies

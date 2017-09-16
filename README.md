@@ -69,16 +69,12 @@ computation.
 MIT
 
 ## References
-[1]. H. Kamper, A. Jansen, S. King, and S. Goldwater, "Unsupervised lexical clustering of speech segments using 
+1. Lu, Jun. "Hyperprior on symmetric Dirichlet distribution." arXiv preprint arXiv:1708.08177 (2017).
+1. H. Kamper, A. Jansen, S. King, and S. Goldwater, "Unsupervised lexical clustering of speech segments using 
 fixed-dimensional acoustic embeddings", in Proceedings of the IEEE Spoken Language Technology Workshop (SLT), 2014.
-
-[2]. Murphy, Kevin P. "Conjugate Bayesian analysis of the Gaussian distribution." def 1.2σ2 (2007): 16.
-
-[3]. Murphy, Kevin P. Machine learning: a probabilistic perspective. MIT press, 2012.
-
-[4]. Pedregosa, Fabian, et al. "Scikit-learn: Machine learning in Python." Journal of Machine Learning Research 12.Oct
+1. Murphy, Kevin P. "Conjugate Bayesian analysis of the Gaussian distribution." def 1.2σ2 (2007): 16.
+1. Murphy, Kevin P. Machine learning: a probabilistic perspective. MIT press, 2012.
+1. Pedregosa, Fabian, et al. "Scikit-learn: Machine learning in Python." Journal of Machine Learning Research 12.Oct
  (2011): 2825-2830.
- 
-[5]. Rasmussen, Carl Edward. "The infinite Gaussian mixture model." Advances in neural information processing systems. 2000.
-
-[6]. Tadesse, Mahlet G., Naijun Sha, and Marina Vannucci. "Bayesian variable selection in clustering high-dimensional data." Journal of the American Statistical Association 100.470 (2005): 602-617.
+1. Rasmussen, Carl Edward. "The infinite Gaussian mixture model." Advances in neural information processing systems. 2000.
+1. Tadesse, Mahlet G., Naijun Sha, and Marina Vannucci. "Bayesian variable selection in clustering high-dimensional data." Journal of the American Statistical Association 100.470 (2005): 602-617.

@@ -10,40 +10,18 @@ particular, we use collapsed Gibbs sampling to do the inference.
 
 ```
 |-- GMM # base class for Gaussian mixture model
-    |---- FGMM  # base class for finite Gaussian mixture model
-        |------ PFGMM
-        |------ CSFGMM
-        |------ LSFGMM
-
     |---- IGMM  # base class for infinite Gaussian mixture model
         |------ CRPMM     ## traditional Chinese restaurant process (CRP) mixture model
         |------ PCRPMM    ## powered Chinese restaurant process (pCRP) mixture model
-        |------ CSIGMM
-        |------ LSIGMM
-        |------ SubCRPMM  ## Sub-clustering with CRP mixture model for high-dimensional data
 ```
 
 ## Documentation
 
 What do we include:
-
-- Finite Gaussian mixture model
-
-- Hyperprior on Dirichlet distribution (for finite Gaussian mixture model)
-
 - Chinese restaurant process mixture model (CRPMM)
 
 - Powered Chinese restaurant process (pCRP) mixture model
 
-- Adaptive powered Chinese restaurant process (Ada-pCRP) mixture model
-
-- Constrained sampling for Chinese restaurant process mixture model
-
-- Bayesian variable selection in Chinese restaurant process mixture (Sub-CRP)
-
-What we will include:
-
-- Hyperprior on Dirichlet process prior (for infinite Gaussian mixture model)
 
 ## Examples
 
@@ -54,8 +32,7 @@ What we will include:
 | [CRPMM 2d](/examples/crpmm_1d_demo.py) | Chinese restaurant process mixture model for 2d data |
 | [pCRPMM 1d](/examples/pcrpmm_1d_demo.py) | powered Chinese restaurant process mixture model for 1d data |
 | [pCRPMM 2d](/examples/pcrpmm_2d_demo.py) | powered Chinese restaurant process mixture model for 2d data |
-| [SubCRP](/examples/subcrp_demo.py) | several test on SubCRP mixture model (Bayesian variable selection for high-dimensional data in CRP) |
-| [CRP draw](/examples/crp_draw.py) | A basic demo for CRP prior draw |
+
 
 ## Dependencies
 1. See requirements.txt

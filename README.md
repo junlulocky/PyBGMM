@@ -1,6 +1,5 @@
 # PyBGMM: Bayesian inference for Gaussian mixture model
 
-More coming...
 
 ## Overview
 Approximation inference (Bayesian inference) for finite Gaussian mixture model (FGMM) and infinte Gaussian mixture 
@@ -72,11 +71,8 @@ MIT
 The repo is based on the following research articles:
 
 - Lu, Jun, Meng Li, and David Dunson. "Reducing over-clustering via the powered Chinese restaurant process." arXiv preprint arXiv:1802.05392 (2018).
-- Lu, Jun. "Robust model-based clustering for big and complex data", 2017.
-- Lu, Jun. "Hyperprior on symmetric Dirichlet distribution." arXiv preprint arXiv:1708.08177 (2017).
 
 ## References
-1. Lu, Jun. "Hyperprior on symmetric Dirichlet distribution." arXiv preprint arXiv:1708.08177 (2017).
 1. H. Kamper, A. Jansen, S. King, and S. Goldwater, "Unsupervised lexical clustering of speech segments using 
 fixed-dimensional acoustic embeddings", in Proceedings of the IEEE Spoken Language Technology Workshop (SLT), 2014.
 1. Murphy, Kevin P. "Conjugate Bayesian analysis of the Gaussian distribution." def 1.2σ2 (2007): 16.

@@ -1,8 +1,6 @@
 """
 Gibbs sampler for Sub clustering by Chinese restaurant process mixture model (SubCRPMM)
 
-Author: Jun Lu
-Contact: jun.lu.locky@gmail.com
 Date: 2017
 """
 

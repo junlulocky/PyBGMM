@@ -1,8 +1,6 @@
 """
 Gibbs sampler for Adaptive powered Chinese restaurant process mixture model (ADAPCRPMM)
 
-Author: Jun Lu
-Contact: jun.lu.locky@gmail.com
 Date: 2017
 """
 

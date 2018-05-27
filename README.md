@@ -16,7 +16,7 @@ particular, we use collapsed Gibbs sampling to do the inference.
         |------ LSFGMM
 
     |---- IGMM  # base class for infinite Gaussian mixture model
-        |------ CRPMM
+        |------ CRPMM     ## traditional Chinese restaurant process (CRP) mixture model
         |------ PCRPMM    ## powered Chinese restaurant process (pCRP) mixture model
         |------ CSIGMM
         |------ LSIGMM
@@ -55,13 +55,9 @@ What we will include:
 | [pCRPMM 1d](/examples/pcrpmm_1d_demo.py) | powered Chinese restaurant process mixture model for 1d data |
 | [pCRPMM 2d](/examples/pcrpmm_2d_demo.py) | powered Chinese restaurant process mixture model for 2d data |
 | [SubCRP](/examples/subcrp_demo.py) | several test on SubCRP mixture model (Bayesian variable selection for high-dimensional data in CRP) |
-| [CSIGMM](/examples/csigmm_1d_demo.py) | demo for constrained sampling for CRPMM |
 | [CRP draw](/examples/crp_draw.py) | A basic demo for CRP prior draw |
 
 ## Dependencies
-1. [Adaptive Rejection Sampling (ARS)](https://github.com/junlulocky/ARS-MCMC) - Python implementation of ARS.
-1. [Clustering accuracy](https://github.com/junlulocky/infopy) - infopy: Python implementation of information theory 
-computation.
 1. See requirements.txt
 
 ## Lincense

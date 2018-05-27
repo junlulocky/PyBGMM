@@ -1,8 +1,6 @@
 """
 Gibbs sampler for powered Chinese restaurant process mixture model (PCRPMM)
 
-Author: Jun Lu
-Contact: jun.lu.locky@gmail.com
 Date: 2017
 """
 

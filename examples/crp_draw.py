@@ -1,8 +1,5 @@
 """
 A basic demo for crp prior draw.
-
-Author: Jun Lu
-Contact: jun.lu.locky@gmail.com
 Date: 2017
 """
 

@@ -1,8 +1,6 @@
 """
 Base class for Infinite Gaussian mixture model (IGMM)
 
-Author: Jun Lu
-Contact: jun.lu.locky@gmail.com
 Date: 2017
 """
 

@@ -1,8 +1,6 @@
 """
 Gibbs sampler for constrained sampling for Chinese restaurant process mixture model (CSCRPMM)
 
-Author: Jun Lu
-Contact: jun.lu.locky@gmail.com
 Date: 2017
 """
 

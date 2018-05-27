@@ -1,8 +1,6 @@
 """
 Gibbs sampler for Chinese restaurant process mixture model (CRPMM)
 
-Author: Jun Lu
-Contact: jun.lu.locky@gmail.com
 Date: 2017
 """
 

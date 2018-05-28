@@ -2,9 +2,7 @@
 
 
 ## Overview
-Approximation inference (Bayesian inference) for finite Gaussian mixture model (FGMM) and infinte Gaussian mixture 
-model (IGMM) includes variational inference and Monte Carlo methods. Here we only use Monte Carlo methods. In 
-particular, we use collapsed Gibbs sampling to do the inference.
+Bayesian inference for Gaussian mixture model to reduce over-clustering via the powered Chinese restaurant process (pCRP). We use collapsed Gibbs sampling for posterior inference.
 
 ## Code Structure
 
